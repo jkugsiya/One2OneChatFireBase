@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="signupForm">
+    <ion-item>
+      <ion-input
+        placeholder="Email Address"
+        formControlName="email"
+        autofocus="true"
+        clearInput="true"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="(email.touched || email.dirty) && email.errors" class="errors">
+      <span *ngIf="email.errors?.required">Email is required</span>
+      <span *ngIf="email.errors?.email">Email is incorrect</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+        placeholder="Password"
+        type="password"
+        formControlName="password"
+        clearInput="true"
+      ></ion-input>
+    </ion-item>
+    <div
+      *ngIf="(password.dirty || password.touched) && password.errors"
+      class="errors"
+    >
+      <span *ngIf="password.errors?.required">Password is required.</span>
+      <span *ngIf="password.errors?.minlength"
+        >Password must be atleast 6 characters.</span
+      >
+    </div>
+
+    <ion-item>
+      <ion-input
+        placeholder="Name"
+        formControlName="name"
+        clearInput="true"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="(name.dirty || name.touched) && name.errors" class="errors">
+      <span *ngIf="password.errors?.required">Name is required.</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+        type="number"
+        placeholder="Phone"
+        formControlName="phone"
+        clearInput="true"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="(phone.dirty || phone.touched) && phone.errors" class="errors">
+      <span *ngIf="phone.errors?.required">Phone is required.</span>
+      <span *ngIf="phone.errors?.minlength">Phone is incorrect.</span>
+      <span *ngIf="phone.errors?.maxLength">Phone is incorrect.</span>
+    </div>
+  </form>
+
+  <ion-button (click)="signUp()" expand="full">Sign Up</ion-button>
+</ion-content>
